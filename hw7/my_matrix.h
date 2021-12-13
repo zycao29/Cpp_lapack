@@ -68,14 +68,16 @@ my_matrix<T>::my_matrix(int Nrows, int Ncols, std::string mat_name){
     }
     else {
         //continue here
+        this->name = mat_name;
         this->num_rows = Nrows;
         this->num_columns = Ncols;
         
         ptr = new T*[Ncols];
-        
-        for (int jj = 0; jj < Ncols; jj++){
-                ptr[jj] = new T[Nrows];
-        }
+        ptr[0]=new T[num_rows*num_columns];
+
+        for (int jj=0;jj<num_columns;jj++){
+          ptr[jj]=ptr[0]+num_rows*jj;
+          }
     }
   }
   catch (const char* problem){
@@ -97,6 +99,9 @@ my_matrix<T>::my_matrix(const my_matrix<T>& mat){
   //
   // copy elements
   ptr = new T*[num_columns];
+  for (int jj=0;jj< num_columns;jj++){
+	  ptr[jj]=new T[num_rows];
+  }
     
     
   for (int jj = 0; jj < num_columns; jj++){
@@ -136,29 +141,25 @@ my_matrix<T>& my_matrix<T>::operator=(const my_matrix<T>& mat){
       delete[] ptr[jj];
     }
     delete[] ptr;
+  }
 
     // reallocate memory
-    this->num_rows = mat.num_rows;
-    this->num_columns = mat.num_columns;
-    // initialize with column major format
-    // continue here
-    //
-    //
-    //
-
-    // copy elements
-    // continue here
-    //
-    //
-    //
-    for(int i=0; i<num_columns; i++){
-        for(int j=0; j<num_rows; j++){
-            this->ptr[i][j] = mat.ptr[i][j];
-                     }
-                 }
-  }
-  
-  return *this;
+    try{
+	    if (mat.num_rows <=0 || mat.num_columns<=0){
+		    throw "Error! invalid matrix!";
+	    }
+	    this->num_rows = mat.num_rows;
+	    this->num_columns = mat.num_columns;
+	    // initialize with column major format
+	    for(int jj=0;jj<num_columns;jj++){
+		    for(int ii=0;ii<num_rows;ii++){
+			    this->ptr[jj][ii]=mat.ptr[jj][ii];
+		    }
+	    }
+	    return *this;
+    }catch (const char* problem){
+	    std::cout<<"problem is:"<<problem<<std::endl;
+    }
 }
 
 /* overload operator()(int row, int col) here */
