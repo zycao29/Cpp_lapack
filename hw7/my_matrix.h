@@ -195,6 +195,7 @@ my_matrix<float> my_matrix<float>::operator|(const my_matrix<float>& B){
   //
   //
   //
+    return B;
 }
 
 #endif
