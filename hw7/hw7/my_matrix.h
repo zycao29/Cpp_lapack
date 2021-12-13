@@ -99,7 +99,7 @@ my_matrix<T>::my_matrix(const my_matrix<T>& mat){
   //
   // copy elements
   ptr = new T*[num_columns];
-  ptr[0] = new T[num_columns * num_rows]
+  ptr[0] = new T[num_columns * num_rows];
   for (int jj=1;jj< num_columns;jj++){
 	  ptr[jj]= ptr[0] + num_rows * jj;
   }
