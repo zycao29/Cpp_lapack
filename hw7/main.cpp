@@ -36,8 +36,8 @@ int main(void){
 
 
   // create matrix A1 and vector B. 
-  my_matrix<float> A1(2, 2, "A1");
-  my_matrix<double> B(3, 1, "B");  
+  my_matrix<float> A1(2, 2, "");
+  my_matrix<float> B(3, 1, "B");  
   A1(0,0) = 1;
   A1(0,1) = 2;
   A1(1,0) = 3;
@@ -45,19 +45,19 @@ int main(void){
   B(0,0) = 21;
   B(1,0) = 21;
   B(2,0) = 10;
-  std::cout<<"A1 is:"<<std::endl;
+  std::cout<<"A1"<<std::endl;
   A1.display();
 
   my_matrix<float> A2(A1);
-  std::cout<<"A2 is:"<<std::endl;
+  std::cout<<"A2"<<std::endl;
   A2.display();
 
   
   my_matrix<float> A3=A1+A2;
-  std::cout<<"A3 is:"<<std::endl;
+  std::cout<<"A3"<<std::endl;
   A3.display();
  
-  my_matrix<double> A4(3,3,"A4");
+  my_matrix<float> A4(3,3,"A4");
   A4(0,0)=1;
   A4(0,1)=3;
   A4(0,2)=4;

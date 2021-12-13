@@ -233,7 +233,6 @@ my_matrix<float> my_matrix<float>::operator|(const my_matrix<float>& B){
   //continue here for sgesv_
   //
   //
-  //
     int N = this->num_rows;
     int NRHS = B.num_columns;
     my_matrix<float> A_copy(*this);
