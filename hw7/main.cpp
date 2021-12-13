@@ -26,12 +26,12 @@ int main(void){
   B(1,0) = 2;
   A.display();
   B.display();
-  my_matrix<double> sol(2, 1, "sol");
-  sol = A|B;
-  sol.display();
-
-  my_matrix<double> A2(3, 3, "A2");
-  my_matrix<double> B2(3, 1, "B2");
+//  my_matrix<double> sol(2, 1, "sol");
+//  sol = A|B;
+//  sol.display();
+//
+//  my_matrix<double> A2(3, 3, "A2");
+//  my_matrix<double> B2(3, 1, "B2");
   // ....
     
     
