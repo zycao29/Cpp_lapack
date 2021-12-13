@@ -37,7 +37,7 @@ int main(void){
 
   // create matrix A1 and vector B. 
   my_matrix<float> A1(2, 2, "");
-  my_matrix<double> B(3, 1, "B");  
+  my_matrix<float> B(3, 1, "B");  
   A1(0,0) = 1;
   A1(0,1) = 2;
   A1(1,0) = 3;
@@ -73,11 +73,11 @@ int main(void){
   std::cout<<"Vector B is:"<<std::endl;
   B.display();
   //declare solution vector
-  my_matrix<double> x(3,1,"X");
-  //compute X
+  my_matrix<double> x(3,1,"x");
+
   x=A4|B;
   std::cout<<"The solution x is:"<<std::endl;
-  X.display();
+  x.display();
   return 0;
     
     
