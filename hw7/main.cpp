@@ -57,7 +57,7 @@ int main(void){
   std::cout<<"A3"<<std::endl;
   A3.display();
  
-  my_matrix<double> A4(3,3,"A4");
+  my_matrix<float> A4(3,3,"A4");
   A4(0,0)=1;
   A4(0,1)=3;
   A4(0,2)=4;
@@ -73,7 +73,7 @@ int main(void){
   std::cout<<"Vector B is:"<<std::endl;
   B.display();
   //declare solution vector
-  my_matrix<double> x(3,1,"x");
+  my_matrix<float> x(3,1,"x");
 
   x=A4|B;
   std::cout<<"The solution x is:"<<std::endl;
