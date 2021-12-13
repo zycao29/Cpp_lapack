@@ -14,10 +14,10 @@
 
 template <typename T>
 class my_matrix{
-
+private:
   int num_rows;
   int num_columns;
-  T** ptr;
+  T **ptr;
   std::string name;
   
   public:
@@ -68,9 +68,16 @@ my_matrix<T>::my_matrix(int Nrows, int Ncols, std::string mat_name){
     }
     else {
         //continue here
-        //
-        //
-        //
+        this->num_rows = Nrows;
+        this->num_columns = Ncols;
+        
+        ptr = new T*[Ncols];  // warning
+        
+        for (int jj = 0; jj < Ncols; jj++){
+            for (int ii = 0; ii < Nrows; ii++){
+                ptr[jj][ii] = new T(Nrows,Ncols,mat_name);
+            }
+        }
     }
   }
   catch (const char* problem){
@@ -88,8 +95,6 @@ my_matrix<T>::my_matrix(const my_matrix<T>& mat){
   name = mat.name;
   // initialize with column major format
   // continue here
-  //
-  //
   //
   // copy elements
   for (int jj = 0; jj < num_columns; jj++){
