@@ -71,7 +71,7 @@ my_matrix<T>::my_matrix(int Nrows, int Ncols, std::string mat_name){
         this->num_rows = Nrows;
         this->num_columns = Ncols;
         
-        ptr = new T*[Ncols];  // warning
+        ptr = new T*[Ncols];
         
         for (int jj = 0; jj < Ncols; jj++){
                 ptr[jj] = new T[Nrows];
@@ -94,7 +94,11 @@ my_matrix<T>::my_matrix(const my_matrix<T>& mat){
   // initialize with column major format
   // continue here
   //
+  //
   // copy elements
+  ptr = new T*[num_columns];
+    
+    
   for (int jj = 0; jj < num_columns; jj++){
     for (int ii = 0; ii < num_rows; ii++){
       ptr[jj][ii] = mat.ptr[jj][ii];
@@ -147,6 +151,11 @@ my_matrix<T>& my_matrix<T>::operator=(const my_matrix<T>& mat){
     //
     //
     //
+    for(int i=0; i<num_columns; i++){
+        for(int j=0; j<num_rows; j++){
+            this->ptr[i][j] = mat.ptr[i][j];
+                     }
+                 }
   }
   
   return *this;
@@ -157,6 +166,8 @@ my_matrix<T>& my_matrix<T>::operator=(const my_matrix<T>& mat){
 //
 //
 
+
+
 template <typename T>
 my_matrix<T> my_matrix<T>::operator+(const my_matrix<T>& mat){
   my_matrix<T> sum(this->num_rows, this->num_columns, "sum");
@@ -164,6 +175,13 @@ my_matrix<T> my_matrix<T>::operator+(const my_matrix<T>& mat){
   //
   //
   //
+    
+    for(int i=0; i<num_columns; i++){
+        for(int j=0; j<num_rows; j++){
+            sum.ptr[i][j] = ptr[i][j] + mat.ptr[i][j];
+        }
+    }
+
   
   return sum;
 }
@@ -195,7 +213,21 @@ my_matrix<float> my_matrix<float>::operator|(const my_matrix<float>& B){
   //
   //
   //
-    //return B;
+    int N = this->num_rows;
+    int NRHS = B.num_columns;
+    my_matrix<float> A_copy(*this);
+    my_matrix<float> B_copy(B);
+    int LDA = this->num_rows;
+    int* IPIV = new int[N];
+    int LDB = B.num_rows;
+    int INFO = 0;
+
+    sgesv_(&N, &NRHS, A_copy.ptr[0], &LDA, IPIV, B_copy.ptr[0], &LDB, &INFO);
+    
+    std::cout << "INFO = " << INFO << std::endl;
+    
+    delete[] IPIV;
+    return B_copy;
 }
 
 #endif
