@@ -33,7 +33,52 @@ int main(void){
   my_matrix<double> A2(3, 3, "A2");
   my_matrix<double> B2(3, 1, "B2");
   // ....
-    
+
+
+  // create matrix A1 and vector B. 
+  my_matrix<float> A1(2, 2, "A1");
+  my_matrix<double> B(3, 1, "B");  
+  A1(0,0) = 1;
+  A1(0,1) = 2;
+  A1(1,0) = 3;
+  A1(1,1) = 4;
+  B(0,0) = 21;
+  B(1,0) = 21;
+  B(2,0) = 10;
+  std::cout<<"A1 is:"<<std::endl;
+  A1.display();
+
+  my_matrix<float> A2(A1);
+  std::cout<<"A2 is:"<<std::endl;
+  A2.display();
+
+  
+  my_matrix<float> A3=A1+A2;
+  std::cout<<"A3 is:"<<std::endl;
+  A3.display();
+ 
+  my_matrix<double> A4(3,3,"A4");
+  A4(0,0)=1;
+  A4(0,1)=3;
+  A4(0,2)=4;
+  A4(1,0)=-1;
+  A4(1,1)=5;
+  A4(1,2)=1;
+  A4(2,0)=0;
+  A4(2,1)=2;
+  A4(2,2)=1;
+  std::cout<<"A4 is:"<<std::endl;
+  A4.display();
+
+  std::cout<<"Vector B is:"<<std::endl;
+  B.display();
+  //declare solution vector
+  my_matrix<double> X(3,1,"X");
+  //compute X
+  X=A4|B;
+  std::cout<<"The solution x is:"<<std::endl;
+  X.display();
+  return 0;
     
     
   

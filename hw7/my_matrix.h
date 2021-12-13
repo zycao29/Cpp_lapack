@@ -191,8 +191,6 @@ my_matrix<T> my_matrix<T>::operator+(const my_matrix<T>& mat){
   my_matrix<T> sum(this->num_rows, this->num_columns, "sum");
   // continue here
   //
-  //
-  //
     try{
 		if(num_columns != mat.num_rows || num_rows != mat.num_columns){
 			throw "Incorrect Dimension";
