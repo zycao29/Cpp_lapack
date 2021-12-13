@@ -74,9 +74,7 @@ my_matrix<T>::my_matrix(int Nrows, int Ncols, std::string mat_name){
         ptr = new T*[Ncols];  // warning
         
         for (int jj = 0; jj < Ncols; jj++){
-            for (int ii = 0; ii < Nrows; ii++){
-                ptr[jj][ii] = new T(Nrows,Ncols,mat_name);
-            }
+                ptr[jj] = new T[Nrows];
         }
     }
   }
