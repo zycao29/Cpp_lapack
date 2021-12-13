@@ -57,7 +57,7 @@ int main(void){
   std::cout<<"A3"<<std::endl;
   A3.display();
  
-  my_matrix<float> A4(3,3,"A4");
+  my_matrix<double> A4(3,3,"A4");
   A4(0,0)=1;
   A4(0,1)=3;
   A4(0,2)=4;
