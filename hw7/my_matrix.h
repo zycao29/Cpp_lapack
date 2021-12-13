@@ -146,7 +146,7 @@ my_matrix<T>& my_matrix<T>::operator=(const my_matrix<T>& mat){
     // reallocate memory
     try{
 	    if (mat.num_rows <=0 || mat.num_columns<=0){
-		    throw "Error! invalid matrix!";
+		    throw "Incorrect Matrix";
 	    }
 	    this->num_rows = mat.num_rows;
 	    this->num_columns = mat.num_columns;
@@ -166,6 +166,23 @@ my_matrix<T>& my_matrix<T>::operator=(const my_matrix<T>& mat){
 // continue here
 //
 //
+template <typename T>
+T& my_matrix<T>:: operator()(int row, int col){
+	try{
+		if (num_rows<row || num_columns < col){
+			throw "Incorrect Dimension";
+		}
+		else{
+			return ptr[col][row];
+		}
+	}
+	catch (const char* problem){
+		std::cout<<"problem is:"<<problem<<std::endl;
+	}
+}
+
+
+
 
 
 
@@ -176,15 +193,20 @@ my_matrix<T> my_matrix<T>::operator+(const my_matrix<T>& mat){
   //
   //
   //
-    
-    for(int i=0; i<num_columns; i++){
-        for(int j=0; j<num_rows; j++){
-            sum.ptr[i][j] = ptr[i][j] + mat.ptr[i][j];
-        }
-    }
-
-  
-  return sum;
+    try{
+		if(num_columns != mat.num_rows || num_rows != mat.num_columns){
+			throw "Incorrect Dimension";
+		}
+		 my_matrix<T> sum(this->num_rows,this->num_columns,this->name);
+		 for (int jj=0; jj<num_columns;jj++){
+			 for (int ii=0;ii<num_rows;ii++){
+				 sum.ptr[jj][ii]=this->ptr[jj][ii]+mat.ptr[jj][ii];
+			 }
+		 }
+		 return sum;
+	}catch (const char* problem){
+		std::cout<<"Problem is:"<<problem<<std::endl;
+	}
 }
 
 template<>
